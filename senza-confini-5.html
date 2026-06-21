@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXVI Torneo Senza Confini</title>
+<meta property="og:title" content="XXVI Torneo Internazionale Senza Confini">
+<meta property="og:description" content="U12 Category — Opicina, Trieste — 16-19 Luglio 2026. Segui live schedule, classifiche e roster.">
+<meta property="og:image" content="https://xxvbaseballwithoutborders-max.github.io/senza-confini/og-image.png">
+<meta property="og:url" content="https://xxvbaseballwithoutborders-max.github.io/senza-confini/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XXVI Torneo Internazionale Senza Confini">
+<meta name="twitter:description" content="U12 Category — Opicina, Trieste — 16-19 Luglio 2026">
+<meta name="twitter:image" content="https://xxvbaseballwithoutborders-max.github.io/senza-confini/og-image.png">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+:root {
+  --navy: #0a1628;
+  --navy-card: #0f2040;
+  --navy-card2: #122448;
+  --orange: #e85d04;
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.65);
+  --border: rgba(232,93,4,0.35);
+}
+body { background: var(--navy); color: var(--white); min-height: 100vh; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* HOME */
+header { text-align: center; padding: 30px 16px 20px; }
+header h1 { font-size: 18px; font-weight: 700; letter-spacing: 1.5px; color: var(--white); }
+header h2 { font-size: 28px; font-weight: 900; color: var(--orange); letter-spacing: 3px; margin: 4px 0 10px; }
+.team-logo { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 3px solid var(--orange); }
+.category-tag { font-size: 17px; font-weight: 800; color: var(--orange); letter-spacing: 2px; margin-bottom: 6px; }
+.sub-header-logo { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; margin-left: auto; border: 1.5px solid var(--orange); }
+header p { color: var(--muted); font-size: 13px; }
+
+.news-banner { background: var(--orange); margin: 0 12px 20px; border-radius: 14px; padding: 14px 16px; cursor: pointer; }
+.news-banner-title { font-size: 14px; font-weight: 800; color: var(--navy); text-align: center; margin-bottom: 10px; letter-spacing: 0.5px; }
+.ticker-wrap { background: var(--navy); border-radius: 8px; overflow: hidden; padding: 8px 0; }
+.ticker { display: flex; animation: ticker 20s linear infinite; white-space: nowrap; }
+.ticker span { font-size: 13px; font-weight: 700; color: var(--orange); padding-right: 60px; }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; padding: 0 12px 24px; }
+
+/* LIVE GAMES */
+.live-section-title { font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.live-dot-badge { background: #e23232; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px; }
+.live-game-row { background: var(--navy-card); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
+.live-game-row:hover { border-color: var(--orange); }
+.live-game-teams { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.live-game-teams span.names { color: var(--white); font-size: 12px; font-weight: 700; }
+.live-game-teams span.vs-text { color: var(--muted); font-size: 10px; }
+.live-badge-small { background: #e23232; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+.live-game-bottom { display: flex; justify-content: space-between; align-items: center; }
+.live-inning-label { color: var(--muted); font-size: 10px; }
+.live-score-display { color: var(--orange); font-size: 18px; font-weight: 800; }
+.live-score-display .sep { color: rgba(255,255,255,0.4); font-size: 12px; }
+.card { background: var(--navy-card); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 8px 16px; text-align: center; cursor: pointer; transition: border-color 0.2s; }
+.card:hover { border-color: var(--orange); }
+.card i { font-size: 26px; color: var(--orange); display: block; margin-bottom: 10px; }
+.card h3 { font-size: 12px; font-weight: 800; color: var(--orange); letter-spacing: 1px; margin-bottom: 5px; }
+.card p { font-size: 11px; color: var(--muted); }
+
+/* SUB PAGES */
+.sub-header { background: var(--navy-card); padding: 12px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+.back-btn { background: none; border: 1.5px solid var(--orange); color: var(--orange); border-radius: 8px; padding: 5px 12px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.sub-header h2 { font-size: 15px; font-weight: 800; color: var(--white); }
+.sub-body { padding: 14px 12px; }
+
+/* TABS */
+.tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.tab-btn { flex: 1; background: var(--navy-card); border: 1.5px solid var(--border); color: var(--muted); border-radius: 8px; padding: 8px 4px; font-size: 11px; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; }
+.tab-btn.active { background: var(--orange); border-color: var(--orange); color: var(--white); }
+
+/* SCHEDULE */
+.field-label { font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: 1px; margin: 14px 0 8px; display: flex; align-items: center; gap: 6px; }
+.match-row { background: var(--navy-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+.match-time { font-size: 13px; font-weight: 800; color: var(--orange); min-width: 42px; }
+.match-teams { font-size: 12px; color: var(--white); flex: 1; line-height: 1.4; }
+.score-box { display: flex; align-items: center; gap: 6px; }
+.score { font-size: 16px; font-weight: 800; color: var(--white); min-width: 20px; text-align: center; }
+.vs-dot { font-size: 11px; color: var(--muted); font-weight: 700; }
+.match-row.highlight { background: rgba(232,93,4,0.12); border-color: var(--orange); }
+.match-row.final { border-left: 3px solid var(--orange); }
+.match-row.champion { background: rgba(232,93,4,0.2); border-color: var(--orange); border-width: 2px; }
+
+/* STANDINGS */
+.group-title { font-size: 12px; font-weight: 800; color: var(--orange); letter-spacing: 1px; margin: 16px 0 8px; padding: 6px 10px; background: rgba(232,93,4,0.1); border-radius: 6px; border-left: 3px solid var(--orange); }
+table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 8px; }
+thead th { color: var(--muted); font-size: 10px; font-weight: 700; padding: 6px 4px; text-align: center; border-bottom: 1px solid var(--border); letter-spacing: 0.5px; }
+thead th:first-child { text-align: left; }
+tbody td { padding: 9px 4px; text-align: center; border-bottom: 0.5px solid rgba(255,255,255,0.05); color: var(--white); }
+tbody td:first-child { text-align: left; font-weight: 600; font-size: 11px; }
+tbody tr:first-child td { color: var(--orange); font-weight: 800; }
+tbody tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* NEWS */
+/* NEWS SEARCH */
+.search-wrap { position: relative; margin-bottom: 14px; }
+.search-input { width: 100%; background: var(--navy-card); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px 10px 38px; font-size: 13px; color: var(--white); outline: none; }
+.search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 18px; opacity: 0.85; pointer-events: none; }
+.back-to-news-btn { width: 100%; background: var(--orange); color: var(--navy); border: none; border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 800; cursor: pointer; margin-bottom: 14px; }
+.back-to-news-btn:hover { background: var(--orange-light); }
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { border-color: var(--orange); }
+.search-clear { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); cursor: pointer; font-size: 14px; padding: 4px; }
+.search-clear:hover { color: var(--orange); }
+.no-results { text-align: center; padding: 24px; color: var(--muted); font-size: 13px; }
+.day-divider { display: flex; align-items: center; margin: 18px 0 10px; }
+.day-divider:first-child { margin-top: 0; }
+.day-divider span { font-size: 11px; font-weight: 800; color: var(--orange); letter-spacing: 1px; background: rgba(232,93,4,0.12); padding: 4px 10px; border-radius: 6px; }
+.day-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 10px; }
+
+.news-item { background: var(--navy-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+.news-date { font-size: 11px; color: var(--muted); margin-bottom: 5px; display: block; }
+.news-item h4 { font-size: 13px; font-weight: 700; color: var(--orange); margin-bottom: 6px; }
+.news-item p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ROSTERS */
+.team-card { background: var(--navy-card); border: 0.5px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.team-name { font-size: 13px; font-weight: 800; color: var(--orange); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
+.player-row { display: flex; align-items: center; padding: 5px 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); font-size: 12px; gap: 10px; }
+.player-row:last-child { border-bottom: none; }
+.player-num { color: var(--orange); font-weight: 800; min-width: 28px; font-size: 11px; }
+.player-name { color: var(--white); flex: 1; }
+.player-pos { color: var(--muted); font-size: 10px; background: rgba(255,255,255,0.07); padding: 2px 6px; border-radius: 4px; }
+.player-dob { color: var(--muted); font-size: 10px; min-width: 64px; }
+.overage-badge { background: var(--orange); color: var(--navy); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.5px; margin-left: 4px; }
+
+/* LOADING */
+.loading { text-align: center; padding: 30px; color: var(--muted); font-size: 13px; }
+.loading i { font-size: 20px; color: var(--orange); display: block; margin-bottom: 8px; animation: spin 1s linear infinite; }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.error-msg { text-align: center; padding: 20px; color: #ff6b6b; font-size: 12px; background: rgba(255,100,100,0.08); border-radius: 8px; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <header>
+    <img src="logo.png" alt="Jr. Alpina" class="team-logo" onerror="this.style.display='none'">
+    <h1>XXVI TORNEO INTERNAZIONALE</h1>
+    <h2>SENZA CONFINI</h2>
+    <p class="category-tag">U12 CATEGORY</p>
+    <p>Opicina, Trieste &mdash; 16-19 Luglio 2026</p>
+  </header>
+  <div class="news-banner" onclick="goTo('page-news')">
+    <div class="news-banner-title">NEWS &amp; COMMUNICATIONS</div>
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span id="ticker-text">+++ Benvenuti al Torneo Senza Confini! &bull; Opicina, Trieste &bull; 16-19 Luglio 2026 +++</span>
+        <span id="ticker-text2">+++ Benvenuti al Torneo Senza Confini! &bull; Opicina, Trieste &bull; 16-19 Luglio 2026 +++</span>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card" onclick="goTo('page-schedule')">
+      <span style="font-size:28px">📅</span>
+      <h3>SCHEDULE</h3>
+      <p>Calendario e Orari</p>
+    </div>
+    <div class="card" onclick="goTo('page-standings')">
+      <span style="font-size:28px">🏅</span>
+      <h3>STANDINGS</h3>
+      <p>Classifiche e Inning</p>
+    </div>
+    <div class="card" onclick="goTo('page-rosters')">
+      <span style="font-size:28px">👕</span>
+      <h3>ROSTERS</h3>
+      <p>Squadre e Casacche</p>
+    </div>
+  </div>
+  <div id="live-games-section" style="display:none; padding: 0 12px 20px;">
+    <div class="live-section-title"><span class="live-dot-badge">● LIVE</span> PARTITE IN CORSO</div>
+    <div id="live-games-list"></div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div id="page-news" class="page">
+  <div class="sub-header">
+    <button class="back-btn" onclick="goTo('page-home')"><i class="fa-solid fa-arrow-left"></i> Home</button>
+    <h2>News &amp; Communications</h2>
+    <img src="logo.png" alt="" class="sub-header-logo" onerror="this.style.display='none'">
+  </div>
+  <div class="sub-body">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="news-search" class="search-input" placeholder="Search..." oninput="searchNews(this.value)">
+    </div>
+    <button id="news-search-clear" class="back-to-news-btn" onclick="clearNewsSearch()" style="display:none">← Torna alle news</button>
+    <div id="news-body">
+      <div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div id="page-schedule" class="page">
+  <div class="sub-header">
+    <button class="back-btn" onclick="goTo('page-home')"><i class="fa-solid fa-arrow-left"></i> Home</button>
+    <h2>Schedule &amp; Match</h2>
+    <img src="logo.png" alt="" class="sub-header-logo" onerror="this.style.display='none'">
+  </div>
+  <div class="sub-body">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchDay(this,'day-ven')">VENERDÌ</button>
+      <button class="tab-btn" onclick="switchDay(this,'day-sab')">SABATO</button>
+      <button class="tab-btn" onclick="switchDay(this,'day-dom')">DOMENICA</button>
+    </div>
+    <div id="day-ven"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+    <div id="day-sab" style="display:none"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+    <div id="day-dom" style="display:none"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+  </div>
+</div>
+
+<!-- STANDINGS -->
+<div id="page-standings" class="page">
+  <div class="sub-header">
+    <button class="back-btn" onclick="goTo('page-home')"><i class="fa-solid fa-arrow-left"></i> Home</button>
+    <h2>Standings &amp; Stats</h2>
+    <img src="logo.png" alt="" class="sub-header-logo" onerror="this.style.display='none'">
+  </div>
+  <div class="sub-body">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'st-class')">Classifiche</button>
+      <button class="tab-btn" onclick="switchTab(this,'st-pitch')">Pitching</button>
+      <button class="tab-btn" onclick="switchTab(this,'st-catch')">Receiving</button>
+    </div>
+    <div id="st-class"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+    <div id="st-pitch" style="display:none"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+    <div id="st-catch" style="display:none"><div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div></div>
+  </div>
+</div>
+
+<!-- ROSTERS -->
+<div id="page-rosters" class="page">
+  <div class="sub-header">
+    <button class="back-btn" onclick="goTo('page-home')"><i class="fa-solid fa-arrow-left"></i> Home</button>
+    <h2>Rosters</h2>
+    <img src="logo.png" alt="" class="sub-header-logo" onerror="this.style.display='none'">
+  </div>
+  <div class="sub-body" id="rosters-body">
+    <div class="loading"><i class="fa-solid fa-baseball"></i>Caricamento...</div>
+  </div>
+</div>
+
+<script>
+const CACHE_TTL = 10000;
+const cache = {};
+
+const SHEET_URLS = {
+  scores:    'https://docs.google.com/spreadsheets/d/e/2PACX-1vRWzkEcX4KjkyoVcJBl-ndlp6010unHfV1C1XLwZFggdHl5KLEU83VnnAZXuoyXe0iMMfjqp4OHICvS/pub?gid=0&single=true&output=csv',
+  news:      'https://docs.google.com/spreadsheets/d/e/2PACX-1vRWzkEcX4KjkyoVcJBl-ndlp6010unHfV1C1XLwZFggdHl5KLEU83VnnAZXuoyXe0iMMfjqp4OHICvS/pub?gid=1887164257&single=true&output=csv',
+  pitching:  'https://docs.google.com/spreadsheets/d/e/2PACX-1vRWzkEcX4KjkyoVcJBl-ndlp6010unHfV1C1XLwZFggdHl5KLEU83VnnAZXuoyXe0iMMfjqp4OHICvS/pub?gid=336369922&single=true&output=csv',
+  receiving: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRWzkEcX4KjkyoVcJBl-ndlp6010unHfV1C1XLwZFggdHl5KLEU83VnnAZXuoyXe0iMMfjqp4OHICvS/pub?gid=8675604&single=true&output=csv',
+  rosters:   'https://docs.google.com/spreadsheets/d/e/2PACX-1vRWzkEcX4KjkyoVcJBl-ndlp6010unHfV1C1XLwZFggdHl5KLEU83VnnAZXuoyXe0iMMfjqp4OHICvS/pub?gid=1672172446&single=true&output=csv'
+};
+
+const GIRONE_A = ['VIENNA DUCKS','DEBRECEN (HU)','PSE','Jr. Alpina','Ronchi'];
+const GIRONE_B = ['Hurricans Vienna','Pianoro','Staranzano','Redipuglia','San Giorgio'];
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.slice(1).map(line => {
+    const vals = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = vals[i] || '');
+    return obj;
+  });
+}
+
+async function fetchSheet(sheet) {
+  const now = Date.now();
+  if (cache[sheet] && (now - cache[sheet].ts) < CACHE_TTL) return cache[sheet].data;
+  try {
+    const url = SHEET_URLS[sheet];
+    if (!url) return null;
+    const r = await fetch(url);
+    const text = await r.text();
+    const data = parseCSV(text);
+    cache[sheet] = { data, ts: now };
+    try { localStorage.setItem('cache_' + sheet, JSON.stringify({ data, ts: now })); } catch(e) {}
+    return data;
+  } catch(e) {
+    const local = localStorage.getItem('cache_' + sheet);
+    if (local) return JSON.parse(local).data;
+    return null;
+  }
+}
+
+function goTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo(0,0);
+  if (pageId === 'page-schedule') loadSchedule();
+  if (pageId === 'page-standings') loadStandings();
+  if (pageId === 'page-news') {
+    const searchInput = document.getElementById('news-search');
+    if (searchInput) searchInput.value = '';
+    const clearBtn = document.getElementById('news-search-clear');
+    if (clearBtn) clearBtn.style.display = 'none';
+    loadNews();
+  }
+  if (pageId === 'page-rosters') loadRosters();
+}
+
+function switchDay(btn, id) {
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['day-ven','day-sab','day-dom'].forEach(d => {
+    document.getElementById(d).style.display = d === id ? 'block' : 'none';
+  });
+}
+
+function switchTab(btn, id) {
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['st-class','st-pitch','st-catch'].forEach(d => {
+    document.getElementById(d).style.display = d === id ? 'block' : 'none';
+  });
+}
+
+async function loadSchedule() {
+  const data = await fetchSheet('scores');
+  if (!data) { ['day-ven','day-sab','day-dom'].forEach(d => document.getElementById(d).innerHTML = '<div class="error-msg">Dati non disponibili</div>'); return; }
+
+  const days = { venerdi: { A: [], B: [] }, sabato: { A: [], B: [] }, domenica: { A: [], B: [] } };
+  data.forEach(m => {
+    const g = (m.giorno||'').toLowerCase();
+    const c = (m.campo||'').toUpperCase();
+    if (days[g] && days[g][c]) days[g][c].push(m);
+  });
+
+  const dayMap = { venerdi: 'day-ven', sabato: 'day-sab', domenica: 'day-dom' };
+  const dayLabels = { venerdi: 'VENERDÌ', sabato: 'SABATO', domenica: 'DOMENICA' };
+
+  Object.entries(days).forEach(([giorno, campi]) => {
+    const el = document.getElementById(dayMap[giorno]);
+    if (!el) return;
+
+    if (giorno === 'domenica') {
+      let html = '<div class="field-label"><i class="fa-solid fa-trophy"></i> FINALI</div>';
+      const allFinali = [...(campi.A||[]), ...(campi.B||[])].sort((a,b) => a.ora > b.ora ? 1 : -1);
+      allFinali.forEach(m => {
+        const isChamp = m.match_id === 'd5';
+        const cls = isChamp ? 'match-row champion' : 'match-row final';
+        const sc_h = m.punti_casa !== '' && m.punti_casa !== 0 ? m.punti_casa : '-';
+        const sc_a = m.punti_ospite !== '' && m.punti_ospite !== 0 ? m.punti_ospite : '-';
+        const campo = m.campo ? `<span style="font-size:10px;color:var(--muted);margin-left:6px">Campo ${m.campo}</span>` : '';
+        html += `<div class="${cls}">
+          <span class="match-time">${m.ora}</span>
+          <div class="match-teams">${m.squadra_casa} <span style="color:var(--muted);font-size:10px">vs</span> ${m.squadra_ospite}${campo}</div>
+          <div class="score-box"><span class="score">${sc_h}</span><span class="vs-dot">:</span><span class="score">${sc_a}</span></div>
+        </div>`;
+      });
+      html += `<div class="match-row highlight" style="margin-top:12px">
+        <span class="match-time">16:30</span>
+        <div class="match-teams" style="font-weight:800;color:var(--orange)">PREMIAZIONI UFFICIALI</div>
+      </div>`;
+      el.innerHTML = html;
+      return;
+    }
+
+    let html = '';
+    ['A','B'].forEach(campo => {
+      const partite = (campi[campo]||[]).sort((a,b) => a.ora > b.ora ? 1 : -1);
+      if (!partite.length) return;
+      html += `<div class="field-label"><i class="fa-solid fa-location-dot"></i> CAMPO ${campo}</div>`;
+      partite.forEach(m => {
+        const sc_h = (m.punti_casa !== '' && m.punti_casa !== null && String(m.punti_casa) !== '0') ? m.punti_casa : (m.punti_casa === 0 ? '-' : '-');
+        const sc_a = (m.punti_ospite !== '' && m.punti_ospite !== null && String(m.punti_ospite) !== '0') ? m.punti_ospite : '-';
+        html += `<div class="match-row">
+          <span class="match-time">${m.ora}</span>
+          <div class="match-teams">${m.squadra_casa} <span style="color:var(--muted);font-size:10px">vs</span> ${m.squadra_ospite}</div>
+          <div class="score-box"><span class="score" id="sc-${m.match_id}-h">${m.punti_casa !== '' ? m.punti_casa : '-'}</span><span class="vs-dot">:</span><span class="score" id="sc-${m.match_id}-a">${m.punti_ospite !== '' ? m.punti_ospite : '-'}</span></div>
+        </div>`;
+      });
+    });
+
+    if (giorno === 'sabato') {
+      html += `<div class="match-row highlight" style="margin-top:12px">
+        <span class="match-time">18:30</span>
+        <div class="match-teams" style="font-weight:800;color:var(--orange)">🔥 HOME RUN DERBY</div>
+      </div>`;
+    }
+    el.innerHTML = html;
+  });
+}
+
+async function loadStandings() {
+  const scores = await fetchSheet('scores');
+  if (!scores) { document.getElementById('st-class').innerHTML = '<div class="error-msg">Dati non disponibili</div>'; return; }
+
+  const standings = {};
+  [...GIRONE_A, ...GIRONE_B].forEach(t => {
+    standings[t] = { PG:0, V:0, P:0, RF:0, RS:0, Pts:0 };
+  });
+
+  scores.filter(m => m.giorno !== 'domenica' && String(m.punti_casa) !== '' && String(m.punti_ospite) !== '').forEach(m => {
+    const h = m.squadra_casa, a = m.squadra_ospite;
+    const ph = parseInt(m.punti_casa), pa = parseInt(m.punti_ospite);
+    if (isNaN(ph) || isNaN(pa) || (ph === 0 && pa === 0)) return;
+    if (!standings[h] || !standings[a]) return;
+    standings[h].PG++; standings[a].PG++;
+    standings[h].RF += ph; standings[h].RS += pa;
+    standings[a].RF += pa; standings[a].RS += ph;
+    if (ph > pa) { standings[h].V++; standings[h].Pts+=2; standings[a].P++; }
+    else if (pa > ph) { standings[a].V++; standings[a].Pts+=2; standings[h].P++; }
+    else { standings[h].Pts++; standings[a].Pts++; }
+  });
+
+  function makeTable(teams) {
+    const sorted = teams.slice().sort((a,b) => {
+      if (b.s.Pts !== a.s.Pts) return b.s.Pts - a.s.Pts;
+      return (b.s.RF - b.s.RS) - (a.s.RF - a.s.RS);
+    });
+    return `<table>
+      <thead><tr><th>SQUADRA</th><th>PG</th><th>V</th><th>P</th><th>RF</th><th>RS</th><th>PTS</th></tr></thead>
+      <tbody>${sorted.map(({name,s}) => `<tr>
+        <td>${name}</td><td>${s.PG}</td><td>${s.V}</td><td>${s.P}</td><td>${s.RF}</td><td>${s.RS}</td><td>${s.Pts}</td>
+      </tr>`).join('')}</tbody>
+    </table>`;
+  }
+
+  const gA = GIRONE_A.map(t => ({name:t, s:standings[t]}));
+  const gB = GIRONE_B.map(t => ({name:t, s:standings[t]}));
+
+  document.getElementById('st-class').innerHTML =
+    '<div class="group-title">GIRONE A</div>' + makeTable(gA) +
+    '<div class="group-title">GIRONE B</div>' + makeTable(gB);
+
+  const pitching = await fetchSheet('pitching');
+  if (pitching && pitching.length) {
+    document.getElementById('st-pitch').innerHTML = `<div class="group-title">Inning Lanciati</div>
+      <table><thead><tr><th style="text-align:left">GIOCATORE</th><th>SQUADRA</th><th>IL</th><th>TOT</th></tr></thead>
+      <tbody>${pitching.map(p=>`<tr><td>${p.giocatore||''}</td><td>${p.squadra||''}</td><td>${p.inning_lanciati||0}</td><td>${p.totale||0}</td></tr>`).join('')}</tbody></table>`;
+  } else {
+    document.getElementById('st-pitch').innerHTML = '<div class="error-msg" style="color:var(--muted);background:rgba(255,255,255,0.03)">Dati non ancora disponibili</div>';
+  }
+
+  const catching = await fetchSheet('receiving');
+  if (catching && catching.length) {
+    document.getElementById('st-catch').innerHTML = `<div class="group-title">Inning Ricevuti</div>
+      <table><thead><tr><th style="text-align:left">GIOCATORE</th><th>SQUADRA</th><th>IR</th><th>TOT</th></tr></thead>
+      <tbody>${catching.map(p=>`<tr><td>${p.giocatore||''}</td><td>${p.squadra||''}</td><td>${p.inning_ricevuti||0}</td><td>${p.totale||0}</td></tr>`).join('')}</tbody></table>`;
+  } else {
+    document.getElementById('st-catch').innerHTML = '<div class="error-msg" style="color:var(--muted);background:rgba(255,255,255,0.03)">Dati non ancora disponibili</div>';
+  }
+}
+
+function parseItDate(dateStr, timeStr) {
+  // dateStr expected DD/MM/YYYY, timeStr HH:MM
+  const parts = (dateStr||'').split('/');
+  if (parts.length !== 3) return new Date(0);
+  const [d, m, y] = parts.map(p => parseInt(p, 10));
+  const [hh, mm] = (timeStr||'00:00').split(':').map(p => parseInt(p, 10) || 0);
+  return new Date(y, (m||1)-1, d||1, hh||0, mm||0);
+}
+
+let allNewsData = [];
+
+function renderNewsList(list) {
+  const el = document.getElementById('news-body');
+  if (!list.length) {
+    el.innerHTML = '<div class="no-results">Nessuna comunicazione trovata.</div>';
+    return;
+  }
+  let html = '';
+  let lastDate = null;
+  list.forEach(n => {
+    const d = n.data || '';
+    if (d !== lastDate) {
+      html += `<div class="day-divider"><span>${d}</span></div>`;
+      lastDate = d;
+    }
+    html += `<div class="news-item">
+      <span class="news-date">🕒 ${d}${n.ora ? ' — ' + n.ora : ''}</span>
+      <h4>${n.titolo||''}</h4>
+      <p>${n.testo||''}</p>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function searchNews(query) {
+  const clearBtn = document.getElementById('news-search-clear');
+  const q = query.trim().toLowerCase();
+  clearBtn.style.display = q ? 'block' : 'none';
+  if (!q) {
+    renderNewsList(allNewsData);
+    return;
+  }
+  const filtered = allNewsData.filter(n =>
+    (n.titolo||'').toLowerCase().includes(q) ||
+    (n.testo||'').toLowerCase().includes(q) ||
+    (n.data||'').toLowerCase().includes(q)
+  );
+  renderNewsList(filtered);
+}
+
+function clearNewsSearch() {
+  const input = document.getElementById('news-search');
+  input.value = '';
+  document.getElementById('news-search-clear').style.display = 'none';
+  renderNewsList(allNewsData);
+}
+
+async function loadNews() {
+  const data = await fetchSheet('news');
+  const el = document.getElementById('news-body');
+  if (!data || !data.length) {
+    el.innerHTML = '<div class="error-msg" style="color:var(--muted);background:rgba(255,255,255,0.03)">Nessuna comunicazione disponibile</div>';
+    return;
+  }
+  allNewsData = data.slice().sort((a, b) => parseItDate(b.data, b.ora) - parseItDate(a.data, a.ora));
+  renderNewsList(allNewsData);
+}
+
+async function loadRosters() {
+  const el = document.getElementById('rosters-body');
+  const data = await fetchSheet('rosters');
+
+  const ALL_TEAMS = [...GIRONE_A, ...GIRONE_B];
+  const teams = {};
+  ALL_TEAMS.forEach(t => teams[t] = []);
+
+  if (data && data.length) {
+    data.forEach(p => {
+      const team = p['SQUADRA/TEAM'] || '';
+      if (!team) return;
+      if (!teams[team]) teams[team] = [];
+      teams[team].push(p);
+    });
+  }
+
+  const order = { 'giocatore': 1, 'player': 1, 'coach': 2, 'team manager': 3 };
+
+  el.innerHTML = ALL_TEAMS.map(team => {
+    const people = teams[team] || [];
+    if (!people.length) {
+      return `<div class="team-card">
+        <div class="team-name">${team}</div>
+        <p style="color:var(--muted);font-size:12px;padding:6px 0">Roster non ancora ricevuto.</p>
+      </div>`;
+    }
+    const sorted = people.slice().sort((a, b) => {
+      const ta = order[(a['TIPO/TYPE']||'').toLowerCase()] || 9;
+      const tb = order[(b['TIPO/TYPE']||'').toLowerCase()] || 9;
+      if (ta !== tb) return ta - tb;
+      return (parseInt(a['NUMERO/NUMBER']) || 99) - (parseInt(b['NUMERO/NUMBER']) || 99);
+    });
+    return `<div class="team-card">
+      <div class="team-name">${team}</div>
+      ${sorted.map(p => {
+        const tipo = p['TIPO/TYPE'] || '';
+        const num = p['NUMERO/NUMBER'];
+        const fq = (p['FUORI QUOTA/ OVERAGE']||'').trim().toUpperCase() === 'SI';
+        const numBadge = num ? `#${num}` : '—';
+        const dob = p['DATA NASCITA/BIRTH DATE'] || '';
+        return `<div class="player-row">
+          <span class="player-num">${numBadge}</span>
+          <span class="player-name">${p['NOME/NAME']||''} ${p['COGNOME/LAST NAME']||''}${fq ? '<span class="overage-badge">FUORI QUOTA</span>' : ''}</span>
+          ${dob ? `<span class="player-dob">${dob}</span>` : ''}
+          <span class="player-pos">${tipo}</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('');
+}
+
+// Aggiorna ticker dalla news
+fetchSheet('news').then(data => {
+  if (data && data.length) {
+    const sorted = data.slice().sort((a, b) => parseItDate(b.data, b.ora) - parseItDate(a.data, a.ora));
+    const testo = sorted.slice(0, 5).map(n => n.titolo).filter(Boolean).join(' • ');
+    const full = `+++ ${testo} +++`;
+    document.getElementById('ticker-text').textContent = full;
+    document.getElementById('ticker-text2').textContent = full;
+  }
+});
+
+function parseLiveStato(stato) {
+  // formato atteso: LIVE-TOP3 o LIVE-BOT3
+  const s = (stato || '').trim().toUpperCase();
+  if (!s.startsWith('LIVE')) return null;
+  const m = s.match(/LIVE-(TOP|BOT)(\d)/);
+  if (!m) return { half: null, inning: null };
+  return { half: m[1], inning: m[2] };
+}
+
+async function loadLiveGames() {
+  const data = await fetchSheet('scores');
+  const section = document.getElementById('live-games-section');
+  const list = document.getElementById('live-games-list');
+  if (!data || !data.length) {
+    section.style.display = 'none';
+    return;
+  }
+  const liveGames = data.filter(m => (m.stato || '').trim().toUpperCase().startsWith('LIVE'));
+  if (!liveGames.length) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+  list.innerHTML = liveGames.map(m => {
+    const live = parseLiveStato(m.stato);
+    const halfLabel = live.half === 'TOP' ? '▲ TOP' : live.half === 'BOT' ? '▼ BOTTOM' : '';
+    const inningLabel = live.inning ? `${live.inning}°` : '';
+    const sc_h = m.punti_casa !== '' && m.punti_casa !== undefined ? m.punti_casa : 0;
+    const sc_a = m.punti_ospite !== '' && m.punti_ospite !== undefined ? m.punti_ospite : 0;
+    return `<div class="live-game-row" onclick="goTo('page-schedule')">
+      <div class="live-game-teams">
+        <span class="names">${m.squadra_casa || ''} <span class="vs-text">vs</span> ${m.squadra_ospite || ''}</span>
+        <span class="live-badge-small">LIVE</span>
+      </div>
+      <div class="live-game-bottom">
+        <span class="live-inning-label">${halfLabel} ${inningLabel}</span>
+        <span class="live-score-display">${sc_h} <span class="sep">:</span> ${sc_a}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+loadLiveGames();
+setInterval(loadLiveGames, 15000);
+</script>
+</body>
+</html>
